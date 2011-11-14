@@ -1,0 +1,44 @@
+body {
+    font-size:13px;
+    font-family: Arial, sans-serif;
+    width: 700px;
+    margin: 50px auto;
+    background-color: #fff;
+}
+
+a:hover,
+a:link,
+a:active,
+a:visited {
+    color: #3da4d3;
+    text-decoration: none;
+}
+
+ul.tabs {
+    padding: 0;
+    margin: 0 0 3em 0;
+}
+
+ul.tabs li {
+    display: inline;
+    border: 2px dashed #3da4d3;
+    padding: 0.5em 1.5em;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+}
+ul.tabs li a {
+    font-weight: bold;
+    font-size: large;
+}
+
+table {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+td {
+    border-top: 1px solid #ccc;
+}
+

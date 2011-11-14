@@ -18,6 +18,7 @@ class GUI {
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link href="fileuploader.css" rel="stylesheet" type="text/css">
+            <link href="style.css" rel="stylesheet" type="text/css">
             <style>
                 body {font-size:13px; font-family:arial, sans-serif; width:700px; margin:100px auto;}
             </style>
@@ -30,11 +31,13 @@ class GUI {
             if($this->user == 'admin') echo '<li><a href="userlist">Users</a></li>';
             ?>
         </ul>
+        <div class="wrap">
     <?php
     }
 
     public function footer(){
     ?>
+        </div>
         </body>
         </html>
     <?php
@@ -42,6 +45,7 @@ class GUI {
 
     public function uploadform(){
     ?>
+        <p>To upload a file, click on the button below. Drag-and-drop is supported in FF, Chrome.</p>
         <div id="file-uploader">
             <noscript>
                 <p>Please enable JavaScript to use file uploader.</p>
