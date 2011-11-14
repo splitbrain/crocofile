@@ -1,0 +1,21 @@
+====== Crocofile ======
+
+Crocofile is a file upload manager to share files by sharing an account.
+Files can be uploaded and downloaded through the web interface.
+
+===== Requirements =====
+
+  * PHP
+  * Apache with mod_rewrite and .htaccess support
+
+===== Setup =====
+
+  - Unzip the zipfile to your PHP enabled website
+  - Make sure users.conf.php is writable by the webserver
+  - Edit settings.conf.php to set the directory where files will be stored
+  - Visit the uploaded Crocofile in your webbrowser
+  - Log in as 'admin' with password 'admin'
+  - Change the admin password and add new users
+
+
+
