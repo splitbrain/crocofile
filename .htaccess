@@ -1,0 +1,5 @@
+# Make sure authentication header is passed to PHP
+# this might not be required for mod_php
+RewriteEngine on
+RewriteRule \.php$ - [E=PHP_AUTH_DIGEST:%{HTTP:Authorization},L]
+
