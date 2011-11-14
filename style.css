@@ -42,3 +42,6 @@ td {
     border-top: 1px solid #ccc;
 }
 
+table.sortable th {
+    cursor: pointer;
+}

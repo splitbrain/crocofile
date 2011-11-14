@@ -17,11 +17,9 @@ class GUI {
         <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            <link href="fileuploader.css" rel="stylesheet" type="text/css">
-            <link href="style.css" rel="stylesheet" type="text/css">
-            <style>
-                body {font-size:13px; font-family:arial, sans-serif; width:700px; margin:100px auto;}
-            </style>
+            <link href="fileuploader.css" rel="stylesheet" type="text/css" />
+            <link href="style.css" rel="stylesheet" type="text/css" />
+            <script src="sorttable.js" type="text/javascript"></script>
         </head>
         <body>
         <ul class="tabs">
@@ -77,7 +75,7 @@ class GUI {
             return;
         }
         sort($files);
-        echo '<table class="filelist">';
+        echo '<table class="filelist sortable">';
         echo '<tr>';
         echo '<th>File</th>';
         echo '<th>Size</th>';
