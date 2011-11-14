@@ -44,6 +44,7 @@ class GUI {
     public function uploadform(){
     ?>
         <p>To upload a file, click on the button below. Drag-and-drop is supported in FF, Chrome.</p>
+        <p>You can upload files up to <?php echo $this->conf->size_h($this->conf->get('uploadsize'))?>.</p>
         <div id="file-uploader">
             <noscript>
                 <p>Please enable JavaScript to use file uploader.</p>
@@ -69,7 +70,7 @@ class GUI {
     }
 
     public function filelist(){
-        $files = glob($this->conf['uploaddir'].'/'.$this->user.'/*');
+        $files = glob($this->conf->get('uploaddir').'/'.$this->user.'/*');
         if(!count($files)){
             echo '<p>No files uploaded, yet</p>';
             return;
@@ -92,7 +93,7 @@ class GUI {
             echo '</td>';
 
             echo '<td>';
-            echo filesize($file);
+            echo $this->conf->size_h(filesize($file));
             echo '</td>';
 
             echo '<td>';
