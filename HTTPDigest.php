@@ -113,6 +113,9 @@ class HTTPDigest
         return false;
     }
 
+    function a1hash($username,$passphrase){
+        return md5($username.':'.$this->getRealm().':'.$passphrase);
+    }
 
     /** Authenticate the user and return username on success.
      * @param str[] users Array of username/password pairs
@@ -148,7 +151,7 @@ class HTTPDigest
                     if ($this->passwordsHashed) {
                         $a1 = $passphrase;
                     } else {
-                        $a1 = md5($username.':'.$this->getRealm().':'.$passphrase);
+                        $a1 = $this->a1hash($username,$passphrase);
                     }
                     $a2 = md5($_SERVER['REQUEST_METHOD'].':'.$requestURI);
                     if (

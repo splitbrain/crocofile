@@ -128,11 +128,17 @@ class GUI {
             echo htmlspecialchars($user);
             echo '</td>';
 
+            if($this->auth->passwordsHashed){
+                $pass = '';
+            }else{
+                $pass = htmlspecialchars($info['pass']);
+            }
+
             echo '<td>';
             echo '<form action="userlist" method="post">';
             echo '<input type="hidden" name="do"   value="useredit">';
             echo '<input type="hidden" name="user" value="'.htmlspecialchars($user).'">';
-            echo '<input type="text"   name="info[pass]" value="'.htmlspecialchars($info['pass']).'" />';
+            echo '<input type="text"   name="info[pass]" value="'.$pass.'" />';
             echo '<input type="submit" value="save" />';
             echo '</form>';
             echo '</td>';
@@ -150,7 +156,7 @@ class GUI {
 
         echo '<td>';
         echo '<input type="text" name="info[pass]" />';
-        echo '<input type="submit" value="save" />';
+        echo '<input type="submit" value="add user" />';
         echo '</td>';
 
         echo '</form>';

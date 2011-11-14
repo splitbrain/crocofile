@@ -9,14 +9,17 @@ class Authentication extends HTTPDigest {
     /**
      * Load users and passwords
      */
-    public function __construct($userfile){
-        $this->passwordsHashed = false; //FIXME change later when we add registration
+    public function __construct($userfile,$passhash){
+        $this->passwordsHashed = $passhash;
         $this->nonceLife = 3*60*60;    // stay logged in 3 hours
+        $this->realm = 'Crocofile';
 
         $this->users = array();
         $this->userfile = $userfile;
 
-        if(!@file_exists($this->userfile)) return;
+        if(!@file_exists($this->userfile) || filesize($this->userfile) == 0){
+            $this->saveUser('admin',array('pass'=>'admin'));
+        }
 
         $lines = file($this->userfile);
         foreach($lines as $line){
@@ -43,7 +46,11 @@ class Authentication extends HTTPDigest {
 
     public function saveUser($user,$info){
         $user = preg_replace('/[^a-z0-9-_]+/','',strtolower($user));
-        $this->users[$user]['pass'] = $info['pass'];
+        $pass = $info['pass'];
+        if($this->passwordsHashed){
+            $pass = $this->a1hash($user,$pass);
+        }
+        $this->users[$user]['pass'] = $pass;
         $this->saveUserFile();
     }
 

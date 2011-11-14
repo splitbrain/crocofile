@@ -1,16 +1,16 @@
 <?php
+require 'Configuration.php';
+$CONF = new Configuration();
 
 // No auth? no nothing!
 require 'Authentication.php';
-$AUTH = new Authentication('users.conf.php');
+$AUTH = new Authentication('users.conf.php',$CONF->get('passhash'));
 $USER = $AUTH->authenticate();
 if(!$USER){
     $AUTH->send();
     die('You need to authenticate!');
 }
 
-require 'Configuration.php';
-$CONF = new Configuration();
 
 // GUI less actions
 switch($_REQUEST['do']){
