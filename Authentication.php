@@ -3,7 +3,7 @@
 require_once 'HTTPDigest.php';
 
 class Authentication extends HTTPDigest {
-    private $users;
+    public  $users;
     private $userfile;
 
     /**
@@ -39,6 +39,21 @@ class Authentication extends HTTPDigest {
         }else{
             return false;
         }
+    }
+
+    public function saveUser($user,$info){
+        $user = preg_replace('/[^a-z0-9-_]+/','',strtolower($user));
+        $this->users[$user]['pass'] = $info['pass'];
+        $this->saveUserFile();
+    }
+
+    public function saveUserFile(){
+        $data  = "# <?php die()?>\n";
+        $data .= "# configure users below:\n";
+        foreach($this->users as $user => $info){
+            $data .= $user."\t".$info['pass']."\n";
+        }
+        file_put_contents($this->userfile,$data);
     }
 }
 

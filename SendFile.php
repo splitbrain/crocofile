@@ -101,7 +101,7 @@ class SendFile {
      *
      * @author Andreas Gohr <andi@splitbrain.org>
      */
-    protected function rangeRequest($fh,$mime){
+    protected function rangeRequest($fh){
         $size    = $this->size;
         $mime    = $this->mime;
         $ranges  = array();

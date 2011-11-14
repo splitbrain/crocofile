@@ -2,10 +2,10 @@
 
 // No auth? no nothing!
 require 'Authentication.php';
-$Authentication = new Authentication('users.conf.php');
-$USER = $Authentication->authenticate();
+$AUTH = new Authentication('users.conf.php');
+$USER = $AUTH->authenticate();
 if(!$USER){
-    $Authentication->send();
+    $AUTH->send();
     die('You need to authenticate!');
 }
 
@@ -17,7 +17,7 @@ $CONF = array(
 
 // GUI less actions
 switch($_REQUEST['do']){
-    case 'upload':
+    case 'up':
         require 'fileuploader.php';
         $uploader = new qqFileUploader(array(), 10*1024*1024);
         $result   = $uploader->handleUpload($CONF['uploaddir'].'/'.$USER.'/');
@@ -31,16 +31,29 @@ switch($_REQUEST['do']){
         $file = new SendFile($file);
         $file->send();
         exit();
+    case 'useredit':
+        if($USER == 'admin'){
+            $AUTH->saveUser($_REQUEST['user'],$_REQUEST['info']);
+        }
+        break;
 }
 
 // GUI actions
 require 'GUI.php';
-$GUI = new GUI($CONF);
+$GUI = new GUI($CONF,$USER,$AUTH);
 $GUI->header();
 switch ($_REQUEST['do']){
-    default:
+    case 'userlist':
+    case 'useredit':
+        if($USER == 'admin'){
+            $GUI->userlist();
+            break;
+        }
+    case 'upload':
         $GUI->uploadform();
-        $GUI->filelist($USER);
+        break;
+    default:
+        $GUI->filelist();
 }
 $GUI->footer();
 

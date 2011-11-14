@@ -1,5 +1,10 @@
 # Make sure authentication header is passed to PHP
 # this might not be required for mod_php
 RewriteEngine on
-RewriteRule \.php$ - [E=PHP_AUTH_DIGEST:%{HTTP:Authorization},L]
+RewriteRule \.php$ - [E=PHP_AUTH_DIGEST:%{HTTP:Authorization}]
 
+
+RewriteRule ^userlist index.php?do=userlist [L,QSA]
+RewriteRule ^upload   index.php?do=upload [L,QSA]
+RewriteRule ^download index.php?do=download [L,QSA]
+RewriteRule ^up       index.php?do=up [L,QSA]

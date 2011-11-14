@@ -2,9 +2,13 @@
 
 class GUI {
     private $conf;
+    private $user;
+    private $auth;
 
-    public function __construct($conf){
+    public function __construct($conf,$user,$auth){
         $this->conf = $conf;
+        $this->user = $user;
+        $this->auth = $auth;
     }
 
     public function header(){
@@ -19,6 +23,13 @@ class GUI {
             </style>
         </head>
         <body>
+        <ul class="tabs">
+            <li><a href=".">Download</a></li>
+            <li><a href="upload">Upload</a></li>
+            <?php
+            if($this->user == 'admin') echo '<li><a href="userlist">Users</a></li>';
+            ?>
+        </ul>
     <?php
     }
 
@@ -43,7 +54,7 @@ class GUI {
             function createUploader(){
                 var uploader = new qq.FileUploader({
                     element: document.getElementById('file-uploader'),
-                    action: 'index.php?do=upload',
+                    action: 'up',
                     debug: true
                 });
             }
@@ -55,8 +66,8 @@ class GUI {
     <?php
     }
 
-    public function filelist($user){
-        $files = glob($this->conf['uploaddir'].'/'.$user.'/*');
+    public function filelist(){
+        $files = glob($this->conf['uploaddir'].'/'.$this->user.'/*');
         if(!count($files)){
             echo '<p>No files uploaded, yet</p>';
             return;
@@ -73,7 +84,7 @@ class GUI {
             echo '<tr>';
 
             echo '<td>';
-            echo '<a href="index.php?file='.htmlspecialchars($name).'&amp;do=download">';
+            echo '<a href="download?file='.htmlspecialchars($name).'">';
             echo htmlspecialchars($name);
             echo '</a>';
             echo '</td>';
@@ -88,6 +99,52 @@ class GUI {
 
             echo '</tr>';
         }
+        echo '</table>';
+    }
+
+    public function userlist(){
+        $users = $this->auth->users;
+        ksort($users);
+
+        echo '<table class="filelist">';
+        echo '<tr>';
+        echo '<th>User</th>';
+        echo '<th>Pass</th>';
+        echo '</tr>';
+        foreach($users as $user => $info){
+            echo '<tr>';
+
+            echo '<td>';
+            echo htmlspecialchars($user);
+            echo '</td>';
+
+            echo '<td>';
+            echo '<form action="userlist" method="post">';
+            echo '<input type="hidden" name="do"   value="useredit">';
+            echo '<input type="hidden" name="user" value="'.htmlspecialchars($user).'">';
+            echo '<input type="text"   name="info[pass]" value="'.htmlspecialchars($info['pass']).'" />';
+            echo '<input type="submit" value="save" />';
+            echo '</form>';
+            echo '</td>';
+
+            echo '</tr>';
+        }
+
+        echo '<tr>';
+        echo '<form action="userlist" method="post">';
+        echo '<input type="hidden" name="do"   value="useredit">';
+
+        echo '<td>';
+        echo '<input type="text" name="user" value="">';
+        echo '</td>';
+
+        echo '<td>';
+        echo '<input type="text" name="info[pass]" />';
+        echo '<input type="submit" value="save" />';
+        echo '</td>';
+
+        echo '</form>';
+        echo '</tr>';
         echo '</table>';
     }
 }
