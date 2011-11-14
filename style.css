@@ -2,8 +2,12 @@ body {
     font-size:13px;
     font-family: Arial, sans-serif;
     width: 700px;
-    margin: 50px auto;
+    margin: 20px auto;
     background-color: #fff;
+}
+
+h1 {
+    color: #333;
 }
 
 a:hover,
@@ -44,4 +48,9 @@ td {
 
 table.sortable th {
     cursor: pointer;
+}
+
+.footer {
+    font-size: small;
+    text-align: right;
 }

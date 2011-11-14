@@ -22,6 +22,10 @@ class GUI {
             <script src="sorttable.js" type="text/javascript"></script>
         </head>
         <body>
+        <h1>
+            <img src="<?php echo $this->conf->get('icon')?>" border="0" />
+            <?php echo $this->conf->get('title')?>
+        </h1>
         <ul class="tabs">
             <li><a href=".">Download</a></li>
             <li><a href="upload">Upload</a></li>
@@ -35,6 +39,9 @@ class GUI {
 
     public function footer(){
     ?>
+        </div>
+        <div class="footer">
+            <a href="http://www.splitbrain.org">splitbrain.org</a>
         </div>
         </body>
         </html>

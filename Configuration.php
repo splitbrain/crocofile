@@ -4,9 +4,9 @@ class Configuration {
     private $conf;
 
     public function __construct(){
-        $this->conf = array();
+        include('settings.conf.php');
+        $this->conf = $conf;
         $this->conf['uploadsize'] = $this->getUploadSize();
-        $this->conf['uploaddir'] = '/tmp';
     }
 
     public function get($key){
