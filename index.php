@@ -5,10 +5,17 @@ $CONF = new Configuration();
 // No auth? no nothing!
 require 'Authentication.php';
 $AUTH = new Authentication('users.conf.php',$CONF->get('passhash'));
-$USER = $AUTH->authenticate();
-if(!$USER){
+$REALUSER = $AUTH->authenticate();
+if(!$REALUSER){
     $AUTH->send();
     die('You need to authenticate!');
+}
+// Let Admin work as someone else
+$USER = $REALUSER;
+if($REALUSER == 'admin' && isset($_REQUEST['workas'])){
+    if(isset($AUTH->users[$_REQUEST['workas']])){
+        $USER = $_REQUEST['workas'];
+    }
 }
 
 
@@ -37,7 +44,7 @@ switch($_REQUEST['do']){
 
 // GUI actions
 require 'GUI.php';
-$GUI = new GUI($CONF,$USER,$AUTH);
+$GUI = new GUI($CONF,$REALUSER,$USER,$AUTH);
 $GUI->header();
 switch ($_REQUEST['do']){
     case 'userlist':

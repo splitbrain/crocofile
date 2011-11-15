@@ -3,12 +3,14 @@
 class GUI {
     private $conf;
     private $user;
+    private $realuser;
     private $auth;
 
-    public function __construct($conf,$user,$auth){
-        $this->conf = $conf;
-        $this->user = $user;
-        $this->auth = $auth;
+    public function __construct($conf,$realuser,$user,$auth){
+        $this->conf     = $conf;
+        $this->user     = $user;
+        $this->realuser = $realuser;
+        $this->auth     = $auth;
     }
 
     public function header(){
@@ -26,15 +28,50 @@ class GUI {
             <img src="<?php echo $this->conf->get('icon')?>" border="0" />
             <?php echo $this->conf->get('title')?>
         </h1>
+        <?php if($this->realuser == 'admin') $this->workasdropdown() ?>
         <ul class="tabs">
-            <li><a href=".">Download</a></li>
-            <li><a href="upload">Upload</a></li>
-            <?php
-            if($this->user == 'admin') echo '<li><a href="userlist">Users</a></li>';
-            ?>
+            <li><a href=".<?php $this->wasp('?')?>">Download</a></li>
+            <li><a href="upload<?php $this->wasp('?')?>">Upload</a></li>
+            <?php if($this->user == 'admin') echo '<li><a href="userlist">Users</a></li>' ?>
         </ul>
         <div class="wrap">
     <?php
+    }
+
+    public function workasdropdown(){
+        echo '<form action="" class="workas">';
+        echo '<label for="workas">Work as:</label> ';
+        echo '<select name="workas" id="workas">';
+        foreach($this->auth->users as $login => $info){
+            if($login == $this->user){
+                echo '<option selected="selected">';
+            }else{
+                echo '<option>';
+            }
+            echo htmlspecialchars($login);
+            echo '</option>';
+        }
+        echo '<input type="submit" value="go" />';
+        echo '</select>';
+        echo '</form>';
+    }
+
+    /**
+     * Print the Work-As-Parameter
+     */
+    private function wasp($sep='&amp;'){
+        echo $this->rwasp($sep);
+    }
+
+    /**
+     * Return the Work-As-Parameter
+     */
+    private function rwasp($sep='&amp;'){
+        if($this->user != $this->realuser){
+            return $sep.'workas='.rawurlencode($this->user);
+        }else{
+            return '';
+        }
     }
 
     public function footer(){
@@ -64,7 +101,7 @@ class GUI {
             function createUploader(){
                 var uploader = new qq.FileUploader({
                     element: document.getElementById('file-uploader'),
-                    action: 'up',
+                    action: 'up<?php $this->wasp('?')?>',
                     debug: true
                 });
             }
@@ -94,7 +131,7 @@ class GUI {
             echo '<tr>';
 
             echo '<td>';
-            echo '<a href="download?file='.htmlspecialchars($name).'">';
+            echo '<a href="download?file='.htmlspecialchars($name).$this->rwasp().'">';
             echo htmlspecialchars($name);
             echo '</a>';
             echo '</td>';

@@ -37,6 +37,10 @@ ul.tabs li a {
     font-size: large;
 }
 
+form.workas {
+    float: right;
+}
+
 table {
     width: 100%;
     border: 1px solid #ccc;
