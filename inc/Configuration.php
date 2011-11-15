@@ -3,8 +3,8 @@
 class Configuration {
     private $conf;
 
-    public function __construct(){
-        include('settings.conf.php');
+    public function __construct($conffile){
+        include($conffile);
         $this->conf = $conf;
         $this->conf['uploadsize'] = $this->getUploadSize();
     }

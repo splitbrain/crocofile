@@ -8,7 +8,7 @@ $conf['uploaddir'] = '/tmp/';
 $conf['title'] = 'Crocofile';
 
 # The logo to display. maybe your company logo?
-$conf['icon'] = 'crocodile-icon.png';
+$conf['icon'] = 'img/crocodile-icon.png';
 
 # Store passwords hashed (1) or in plain text (0)
 # you need to delete your users.conf.php whenever you change this

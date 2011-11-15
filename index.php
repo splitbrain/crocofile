@@ -1,10 +1,10 @@
 <?php
-require 'Configuration.php';
-$CONF = new Configuration();
+require 'inc/Configuration.php';
+$CONF = new Configuration('conf/settings.conf.php');
 
 // No auth? no nothing!
-require 'Authentication.php';
-$AUTH = new Authentication('users.conf.php',$CONF->get('passhash'));
+require 'inc/Authentication.php';
+$AUTH = new Authentication('conf/users.conf.php',$CONF->get('passhash'));
 $REALUSER = $AUTH->authenticate();
 if(!$REALUSER){
     $AUTH->send();
@@ -22,13 +22,13 @@ if($REALUSER == 'admin' && isset($_REQUEST['workas'])){
 // GUI less actions
 switch($_REQUEST['do']){
     case 'up':
-        require 'fileuploader.php';
+        require 'inc/fileuploader.php';
         $uploader = new qqFileUploader(array(), $CONF->get('uploadsize'));
         $result   = $uploader->handleUpload($CONF->get('uploaddir').'/'.$USER.'/');
         echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
         exit();
     case 'download':
-        require 'SendFile.php';
+        require 'inc/SendFile.php';
         $file = $_REQUEST['file'];
         $file = preg_replace('/[\/\\\\]+/','',$file);
         $file = $CONF->get('uploaddir').'/'.$USER.'/'.$file;
@@ -43,7 +43,7 @@ switch($_REQUEST['do']){
 }
 
 // GUI actions
-require 'GUI.php';
+require 'inc/GUI.php';
 $GUI = new GUI($CONF,$REALUSER,$USER,$AUTH);
 $GUI->header();
 switch ($_REQUEST['do']){

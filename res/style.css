@@ -20,7 +20,7 @@ a:visited {
 
 a.file {
     padding-left: 20px;
-    background: transparent url(fileicons/file.png) center left no-repeat;
+    background: transparent url(../fileicons/file.png) center left no-repeat;
 }
 
 ul.tabs {
