@@ -78,7 +78,7 @@ class GUI {
     ?>
         </div>
         <div class="footer">
-            <a href="http://www.splitbrain.org">splitbrain.org</a>
+            powered by <a href="http://www.splitbrain.org/projects/crocofile">Crocofile</a>
         </div>
         </body>
         </html>
