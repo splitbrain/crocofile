@@ -19,10 +19,12 @@ class GUI {
         <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <title><?php echo htmlspecialchars($this->conf->get('title'))?></title>
             <link href="fileuploader.css" rel="stylesheet" type="text/css" />
             <link href="style.css" rel="stylesheet" type="text/css" />
             <link href="fileicons/fileicons.css" rel="stylesheet" type="text/css" />
             <script src="sorttable.js" type="text/javascript"></script>
+            <link rel="shortcut icon" href="favicon.ico" />
         </head>
         <body>
         <h1>

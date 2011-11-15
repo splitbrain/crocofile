@@ -17,5 +17,10 @@ Files can be uploaded and downloaded through the web interface.
   - Log in as 'admin' with password 'admin'
   - Change the admin password and add new users
 
+===== Credits =====
 
+  * Crocodile Icon from the Animal Iconset by Martin Berube http://www.iconarchive.com/show/animal-icons-by-martin-berube/crocodile-icon.html
+  * HTML 5 Uploading by Andrew Valums https://github.com/valums/file-uploader
+  * HTTP Digest Auth based on work by Paul James http://www.peej.co.uk/projects/phphttpdigest
+  * File Icons from the File Icons project http://www.splitbrain.org/projects/file_icons
 
