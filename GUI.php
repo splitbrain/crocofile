@@ -21,6 +21,7 @@ class GUI {
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <link href="fileuploader.css" rel="stylesheet" type="text/css" />
             <link href="style.css" rel="stylesheet" type="text/css" />
+            <link href="fileicons/fileicons.css" rel="stylesheet" type="text/css" />
             <script src="sorttable.js" type="text/javascript"></script>
         </head>
         <body>
@@ -128,10 +129,11 @@ class GUI {
         echo '</tr>';
         foreach($files as $file){
             $name = basename($file);
+            $ext  = htmlspecialchars(array_pop(explode('.',$file)));
             echo '<tr>';
 
             echo '<td>';
-            echo '<a href="download?file='.htmlspecialchars($name).$this->rwasp().'">';
+            echo '<a class="file ico_'.$ext.'" href="download?file='.htmlspecialchars($name).$this->rwasp().'">';
             echo htmlspecialchars($name);
             echo '</a>';
             echo '</td>';
