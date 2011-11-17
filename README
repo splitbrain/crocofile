@@ -25,3 +25,30 @@ Files can be uploaded and downloaded through the web interface.
   * Table sorting by Stuart Langridge http://www.kryogenix.org/code/browser/sorttable/
   * File Icons from the File Icons project http://www.splitbrain.org/projects/file_icons
 
+===== FAQ =====
+
+:?: How to increase the allowed upload size?
+
+:!: Increase the ''upload_max_filesize'' and ''post_max_size'' values in your php.ini
+
+
+:?: How do I delete files?
+
+:!: Currently through the file system only. Deletion support might be added later. Patches welcome.
+
+
+:?: Can I create groups or let mutliple accounts share an upload space?
+
+:!: No. One account is one upload space. Only the user 'admin' can access all spaces.
+
+
+:?: Where do I report bugs or feature wishes?
+
+:!: https://github.com/splitbrain/crocofile/issues
+
+
+:?: Why is it called Crocofile?
+
+:!: I needed a name. It works with files. Crocodile Dundee was on the TV. Go figure.
+
+
