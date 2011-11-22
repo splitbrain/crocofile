@@ -336,7 +336,7 @@ class ZipStream {
     if ($meth_str == 'store') {
       # store method
       $meth = 0x00;
-      $crc  = unpack('V', hash_file($algo, $path, true));
+      $crc  = unpack('N', hash_file($algo, $path, true));
       $crc = $crc[1];
     } elseif ($meth_str == 'deflate') {
       # deflate method
