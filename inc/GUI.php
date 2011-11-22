@@ -151,6 +151,7 @@ class GUI {
             echo '</tr>';
         }
         echo '</table>';
+        echo '<div class="zip"><a href="zip'.$this->rwasp('?').'" class="file ico_zip">Download ZIP</a></div>';
     }
 
     public function userlist(){

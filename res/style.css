@@ -59,7 +59,13 @@ table.sortable th {
     cursor: pointer;
 }
 
+div.zip {
+    text-align: right;
+}
+
 .footer {
+    border-top: 1px #ccc solid;
+    margin-top: 3em;
     font-size: small;
     text-align: right;
 }

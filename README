@@ -24,6 +24,7 @@ Files can be uploaded and downloaded through the web interface.
   * HTTP Digest Auth based on work by Paul James http://www.peej.co.uk/projects/phphttpdigest
   * Table sorting by Stuart Langridge http://www.kryogenix.org/code/browser/sorttable/
   * File Icons from the File Icons project http://www.splitbrain.org/projects/file_icons
+  * ZIP downloading by Paul Duncan http://pablotron.org/software/zipstream-php/
 
 ===== FAQ =====
 

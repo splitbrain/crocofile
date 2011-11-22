@@ -35,6 +35,15 @@ switch($_REQUEST['do']){
         $file = new SendFile($file);
         $file->send();
         exit();
+    case 'zip':
+        require 'inc/zipstream.php';
+        $zip = new ZipStream("$USER.zip",array('large_file_size'=>1024*1024));
+        $files = glob($CONF->get('uploaddir').'/'.$USER.'/*');
+        foreach($files as $file){
+            $zip->add_file_from_path(basename($file), $file, array('time'=>filemtime($file)));
+        }
+        $zip->finish();
+        exit;
     case 'useredit':
         if($USER == 'admin'){
             $AUTH->saveUser($_REQUEST['user'],$_REQUEST['info']);
