@@ -13,8 +13,8 @@ class SendFile {
 
     public function __construct($file){
         $this->file = $file;
-        $this->size = filesize($file);
-        $this->time = filemtime($file);
+        $this->size = @filesize($file);
+        $this->time = @filemtime($file);
     }
 
     public function send(){
