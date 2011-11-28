@@ -105,7 +105,6 @@ class GUI {
                 var uploader = new qq.FileUploader({
                     element: document.getElementById('file-uploader'),
                     action: 'up<?php $this->wasp('?')?>',
-                    debug: true
                 });
             }
 

@@ -113,8 +113,13 @@ class qqFileUploader {
 
         $pathinfo = pathinfo($this->file->getName());
         $filename = $pathinfo['filename'];
-        //$filename = md5(uniqid());
-        $ext = $pathinfo['extension'];
+        $ext      = $pathinfo['extension'];
+        $filename = preg_replace('/^\.+/','',$filename);
+
+        if($filename == ''){
+            return array('error' => 'No valid file name given (or locale not setup)');
+        }
+
 
         if($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)){
             $these = implode(', ', $this->allowedExtensions);

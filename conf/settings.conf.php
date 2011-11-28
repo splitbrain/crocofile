@@ -13,3 +13,6 @@ $conf['icon'] = 'img/crocodile-icon.png';
 # Store passwords hashed (1) or in plain text (0)
 # you need to delete your users.conf.php whenever you change this
 $conf['passhash'] = 1;
+
+# you might want to set a locale if Unicode filenames fail
+#setlocale(LC_ALL,'en_US.utf-8');

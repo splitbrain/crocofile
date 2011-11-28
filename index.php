@@ -54,6 +54,7 @@ switch($DO){
 
 // GUI actions
 require 'inc/GUI.php';
+header('Content-Type: text/html; charset=utf-8');
 $GUI = new GUI($CONF,$REALUSER,$USER,$AUTH);
 $GUI->header();
 switch ($DO){
