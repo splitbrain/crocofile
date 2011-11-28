@@ -135,7 +135,7 @@ class GUI {
             echo '<tr>';
 
             echo '<td>';
-            echo '<a class="file ico_'.$ext.'" href="download?file='.htmlspecialchars($name).$this->rwasp().'">';
+            echo '<a class="file ico_'.$ext.'" href="download?file='.rawurlencode($name).$this->rwasp().'">';
             echo htmlspecialchars($name);
             echo '</a>';
             echo '</td>';
