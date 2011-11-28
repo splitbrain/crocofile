@@ -20,7 +20,8 @@ if($REALUSER == 'admin' && isset($_REQUEST['workas'])){
 
 
 // GUI less actions
-switch($_REQUEST['do']){
+$DO = (isset($_REQUEST['do']) ? $_REQUEST['do'] : '');
+switch($DO){
     case 'up':
         require 'inc/fileuploader.php';
         $uploader = new qqFileUploader(array(), $CONF->get('uploadsize'));
@@ -55,7 +56,7 @@ switch($_REQUEST['do']){
 require 'inc/GUI.php';
 $GUI = new GUI($CONF,$REALUSER,$USER,$AUTH);
 $GUI->header();
-switch ($_REQUEST['do']){
+switch ($DO){
     case 'userlist':
     case 'useredit':
         if($USER == 'admin'){
