@@ -45,6 +45,12 @@ switch($DO){
         }
         $zip->finish();
         exit;
+    case 'delete':
+        $file = $_REQUEST['file'];
+        $file = preg_replace('/[\/\\\\]+/','',$file);
+        $file = $CONF->get('uploaddir').'/'.$USER.'/'.$file;
+        unlink($file);
+        break;
     case 'useredit':
         if($USER == 'admin'){
             $AUTH->saveUser($_REQUEST['user'],$_REQUEST['info']);
