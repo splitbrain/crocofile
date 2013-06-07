@@ -122,11 +122,13 @@ class GUI {
             return;
         }
         sort($files);
+        echo '<form action="delete" method="get">';
         echo '<table class="filelist sortable">';
         echo '<tr>';
         echo '<th>File</th>';
         echo '<th>Size</th>';
         echo '<th>Uploaded at</th>';
+        echo '<th>Action</th>';
         echo '</tr>';
         foreach($files as $file){
             $name = basename($file);
@@ -147,9 +149,14 @@ class GUI {
             echo strftime('%Y-%m-%d %H:%M',filemtime($file));
             echo '</td>';
 
+            echo '<td>';
+            echo '<button type="submit" name="file" value="'.rawurlencode($name).$this->rwasp().'"/>delete</button>';
+            echo '</td>';
+
             echo '</tr>';
         }
         echo '</table>';
+        echo '</form>';
         echo '<div class="zip"><a href="zip'.$this->rwasp('?').'" class="file ico_zip">Download ZIP</a></div>';
     }
 

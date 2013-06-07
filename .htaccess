@@ -3,9 +3,15 @@
 RewriteEngine on
 RewriteRule \.php$ - [E=PHP_AUTH_DIGEST:%{HTTP:Authorization}]
 
+## Not all installations will require the following line. If you do, 
+## change "/crocofile" to the path to your Crocofile directory relative
+## to your document root.
+#RewriteBase /crocofile
 
+# The following rewrites are required to make Crocofile function
 RewriteRule ^userlist index.php?do=userlist [L,QSA]
 RewriteRule ^upload   index.php?do=upload [L,QSA]
 RewriteRule ^download index.php?do=download [L,QSA]
+RewriteRule ^delete   index.php?do=delete [L,QSA]
 RewriteRule ^up       index.php?do=up [L,QSA]
 RewriteRule ^zip      index.php?do=zip [L,QSA]
