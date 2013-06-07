@@ -33,11 +33,6 @@ Files can be uploaded and downloaded through the web interface.
 :!: Increase the ''upload_max_filesize'' and ''post_max_size'' values in your php.ini
 
 
-:?: How do I delete files?
-
-:!: Currently through the file system only. Deletion support might be added later. Patches welcome.
-
-
 :?: Can I create groups or let mutliple accounts share an upload space?
 
 :!: No. One account is one upload space. Only the user 'admin' can access all spaces.
