@@ -123,6 +123,9 @@ class GUI {
         }
         sort($files);
         echo '<form action="delete" method="get">';
+        if ( $this->rwasp() ) {
+            echo '<input type="hidden" name="workas" value="'.str_replace( 'workas=', '', $this->rwasp('') ).'" />';
+        }
         echo '<table class="filelist sortable">';
         echo '<tr>';
         echo '<th>File</th>';
@@ -150,7 +153,7 @@ class GUI {
             echo '</td>';
 
             echo '<td>';
-            echo '<button type="submit" name="file" value="'.rawurlencode($name).$this->rwasp().'"/>delete</button>';
+            echo '<button type="submit" name="file" value="'.rawurlencode($name).'"/>delete</button>';
             echo '</td>';
 
             echo '</tr>';
