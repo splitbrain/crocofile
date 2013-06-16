@@ -47,6 +47,7 @@ switch($DO){
         exit;
     case 'delete':
         $file = $_REQUEST['file'];
+        $file = urldecode($file);
         $file = preg_replace('/[\/\\\\]+/','',$file);
         $file = $CONF->get('uploaddir').'/'.$USER.'/'.$file;
         unlink($file);
