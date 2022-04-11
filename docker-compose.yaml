@@ -1,0 +1,16 @@
+services:
+  fpm:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      COMPOSE: true
+    volumes:
+      - $PWD/conf:/app/conf
+  nginx:
+    image: nginx:stable-alpine
+    volumes:
+      - $PWD/:/app
+      - $PWD/docker/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8080:80"
