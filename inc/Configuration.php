@@ -43,9 +43,9 @@ class Configuration {
     }
 
     private function toBytes($str){
-        $val = trim($str);
-        $last = strtolower($str[strlen($str)-1]);
-        switch($last) {
+        $val = substr(trim($str), 0, -1);
+        $unit = strtolower($str[strlen($str)-1]);
+        switch($unit) {
             case 'g': $val *= 1024;
             case 'm': $val *= 1024;
             case 'k': $val *= 1024;
